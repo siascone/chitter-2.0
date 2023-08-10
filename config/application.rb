@@ -35,5 +35,12 @@ module Chitter
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.user ActionDispatch::Session::CookieStore,
+      key: '_chitter_session',
+      same_site: :lax,
+      secure: Rails.env.production?
+      
   end
 end
