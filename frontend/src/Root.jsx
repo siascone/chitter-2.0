@@ -20,3 +20,5 @@ function Root() {
 }
 
 export default Root;
+
+// TODO - Wrapping fetch requests with CSRF
