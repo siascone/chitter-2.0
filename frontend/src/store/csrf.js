@@ -21,7 +21,7 @@ export function storeCSRFToken(res) {
     if (csrfToken) sessionStorage.setItem('X-CSRF-Token', csrfToken);
 }
 
-export async function restoreCSRF() {
+export const restoreCSRF = () => async dispatch => {
     const res = await fetch('/api/session');
     storeCSRFToken(res);
     const data = await res.json();

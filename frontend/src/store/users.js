@@ -28,17 +28,16 @@ export const endSession = (currentUserId, dispatch) => {
 }
 
 const usersReducer = (state = {}, action) => {
+    let nextState = { ...state }
     switch(action.type) {
         case SET_CURRENT_USER:
-            const nextState = { ...state }
             nextState[action.userId] = action.user
             return nextState
         case RECEIVE_USERS:
             return { ...state, ...action.users }
         case REMOVE_CURRENT_USER:
-            const newState = { ...state }
-            delete newState[action.userId]
-            return newState
+            delete nextState[action.userId]
+            return nextState
         default:
             return state
     }
