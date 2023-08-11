@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :chits
+
   def self.find_by_credentials(credential, password)
     column = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username
 
