@@ -6,6 +6,8 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger'
+import sessionReducer from './session';
+import usersReducer from './users';
 
 let enhancer;
 
@@ -16,7 +18,10 @@ if (import.meta.env.NODE_ENV === 'production') {
     enhancer = composeEnhancers(applyMiddleware(thunk, logger))
 }
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+    session: sessionReducer,
+    users: usersReducer
+})
 
 const configureStore = (preloadedState) => {
     return createStore(rootReducer, preloadedState, enhancer);

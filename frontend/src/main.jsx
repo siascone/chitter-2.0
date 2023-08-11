@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client'
 import Root from './Root.jsx'
 import './index.css'
 import csrfFetch, { restoreCSRF } from './store/csrf.js'
+import * as sessionActions from './store/session.js'
 
 if (import.meta.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
+  window.sessionActions = sessionActions
 }
 
 const renderApplication = () => {

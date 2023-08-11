@@ -24,6 +24,7 @@ class User < ApplicationRecord
     column = credential =~ URI::MailTo::EMAIL_REGEXP ? :email : :username
 
     user = User.find_by(column => credential)
+    debugger
     user&.authenticate(password)
   end
 

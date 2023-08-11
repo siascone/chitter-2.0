@@ -1,3 +1,5 @@
+import { setCurrentUser, storeCurrentUser } from "./session";
+
 async function csrfFetch(url, options = {}) {
     options.method = options.method || 'GET';
     options.headers = options.headers || {};
@@ -22,6 +24,11 @@ export function storeCSRFToken(res) {
 export async function restoreCSRF() {
     const res = await fetch('/api/session');
     storeCSRFToken(res);
+    const data = await res.json();
+    storeCurrentUser(data.user);
+    if (data.user) {
+        dispatch(setCurrentUser(data.user))
+    }
     return res;
 }
 
