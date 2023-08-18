@@ -22,6 +22,7 @@ export function storeCSRFToken(res) {
 }
 
 export const restoreCSRF = () => async dispatch => {
+    debugger
     const res = await fetch('/api/session');
     storeCSRFToken(res);
     const data = await res.json();

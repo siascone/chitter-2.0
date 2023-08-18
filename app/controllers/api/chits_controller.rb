@@ -9,7 +9,7 @@ class Api::ChitsController < ApplicationController
 
     def index
         @chits = Chit.all
-        render json: @chits
+        render :index
     end
 
     def create

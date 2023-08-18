@@ -8,6 +8,7 @@ import * as sessionActions from './store/session.js'
 if (import.meta.env.NODE_ENV !== 'production') {
   window.csrfFetch = csrfFetch;
   window.sessionActions = sessionActions
+  window.restoreCSRF = restoreCSRF
 }
 
 const renderApplication = () => {
@@ -19,7 +20,8 @@ const renderApplication = () => {
 }
 
 if (sessionStorage.getItem('X-CSRF-Token') === null) {
-  restoreCSRF().then(renderApplication);
+  // store gets added to window by instansiation of <Root />
+  store.dispatch(restoreCSRF()).then(renderApplication);
 } else {
   renderApplication();
 }
